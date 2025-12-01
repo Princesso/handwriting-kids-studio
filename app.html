@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LittleScribe App</title>
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="styles/main.css">
+  <style type="text/tailwindcss" data-teda="tailwind-apply">
+    @layer components {
+      .tool-btn { @apply w-12 h-12 rounded-full shadow-sm border-2 border-white flex items-center justify-center cursor-pointer hover:scale-110 transition-transform; }
+      .action-btn { @apply px-4 py-2 rounded-xl font-bold text-sm shadow-sm flex items-center gap-2 transition-all hover:-translate-y-0.5 active:translate-y-0; }
+    }
+  </style>
+</head>
+<body class="h-screen w-screen bg-slate-50 flex flex-col overflow-hidden select-none touch-none">
+
+  <!-- Top Bar -->
+  <header class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-4 z-20 shrink-0 shadow-sm">
+    <div class="flex items-center gap-4">
+      <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <img src="logo.svg" class="w-8 h-8" alt="Home">
+        <span class="font-bold text-slate-700 hidden sm:inline">LittleScribe</span>
+      </a>
+      <div class="h-6 w-px bg-slate-200 mx-2"></div>
+      <div class="flex items-center gap-2 bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full text-sm font-bold border border-yellow-200">
+        <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <span id="streakCount">0</span> Stars
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button id="btnSpeak" class="action-btn bg-indigo-50 text-indigo-600 hover:bg-indigo-100" title="Read Aloud">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+        <span class="hidden sm:inline">Read</span>
+      </button>
+      <button id="btnNew" class="action-btn bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 shadow-md">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        <span>Magic Pencil</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Canvas Area -->
+  <main class="flex-1 relative bg-slate-100 p-4 flex gap-4 overflow-hidden">
+    
+    <!-- Toolbar (Left) -->
+    <aside class="hidden sm:flex flex-col gap-4 bg-white p-3 rounded-2xl shadow-sm z-10 w-20 items-center justify-center shrink-0">
+      <div class="text-xs font-bold text-slate-400 uppercase mb-2">Color</div>
+      <button class="tool-btn bg-slate-900 active ring-4 ring-offset-2 ring-indigo-300" data-tool="pen" data-color="#1e293b" title="Black"></button>
+      <button class="tool-btn bg-blue-500" data-tool="pen" data-color="#3b82f6" title="Blue"></button>
+      <button class="tool-btn bg-red-500" data-tool="pen" data-color="#ef4444" title="Red"></button>
+      <button class="tool-btn bg-green-500" data-tool="pen" data-color="#10b981" title="Green"></button>
+      
+      <div class="h-px w-10 bg-slate-200 my-2"></div>
+      
+      <div class="text-xs font-bold text-slate-400 uppercase mb-2">Tools</div>
+      <button class="tool-btn bg-white border-slate-200" data-tool="eraser" title="Eraser">
+        <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+      </button>
+      <button id="btnClear" class="tool-btn bg-white border-slate-200" title="Clear All">
+         <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+      </button>
+    </aside>
+
+    <!-- Mobile Toolbar (Bottom - Only visible on small screens) -->
+    <div class="sm:hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-md p-2 rounded-full shadow-xl z-50 flex gap-3 border border-slate-200">
+       <button class="tool-btn w-10 h-10 bg-blue-500 active ring-2 ring-offset-1 ring-blue-300" data-tool="pen" data-color="#3b82f6"></button>
+       <button class="tool-btn w-10 h-10 bg-red-500" data-tool="pen" data-color="#ef4444"></button>
+       <button class="tool-btn w-10 h-10 bg-white border-slate-200" data-tool="eraser">
+         <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+       </button>
+    </div>
+
+    <!-- Canvas Container -->
+    <div id="canvasContainer" class="flex-1 bg-white rounded-2xl shadow-md relative overflow-hidden bg-paper-pattern border border-slate-200 cursor-crosshair">
+      <canvas id="drawCanvas" class="absolute inset-0 z-10 touch-none"></canvas>
+      
+      <!-- Done Button Floating -->
+      <button id="btnCheck" class="absolute bottom-8 right-8 z-30 bg-green-500 text-white px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:bg-green-600 hover:scale-105 transition-all flex items-center gap-2">
+        <span>I'm Done!</span>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- AI Modal -->
+  <div id="aiModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden relative animate-bounce-in">
+      <div class="bg-gradient-to-r from-blue-500 to-cyan-500 p-6 text-white text-center relative">
+        <button class="modal-close absolute top-4 right-4 text-white/70 hover:text-white">
+           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+           <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+        </div>
+        <h2 class="text-2xl font-bold">Magic Pencil</h2>
+        <p class="text-blue-50 text-sm mt-1">What should we write today?</p>
+      </div>
+      
+      <div class="p-6">
+        <!-- Loading State -->
+        <div id="aiStatus" class="text-center space-y-4 py-4">
+          <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+            <div id="aiProgress" class="bg-blue-500 h-full w-0 transition-all duration-300"></div>
+          </div>
+          <p id="aiProgressText" class="text-slate-500 font-medium text-sm">Waking up the magic brain...</p>
+        </div>
+
+        <!-- Input State -->
+        <div id="aiInputArea" class="space-y-4 hidden">
+          <div>
+            <label class="block text-slate-700 font-bold mb-2 ml-1">Pick a Topic:</label>
+            <input type="text" id="topicInput" placeholder="e.g., Space, Pizza, Dinosaurs..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-shadow" autofocus>
+          </div>
+          <div class="flex flex-wrap gap-2 text-sm text-slate-500">
+            <span class="cursor-pointer hover:text-blue-600 bg-slate-100 px-3 py-1 rounded-full" onclick="$('#topicInput').val('Space')">🚀 Space</span>
+            <span class="cursor-pointer hover:text-blue-600 bg-slate-100 px-3 py-1 rounded-full" onclick="$('#topicInput').val('Animals')">🐶 Animals</span>
+            <span class="cursor-pointer hover:text-blue-600 bg-slate-100 px-3 py-1 rounded-full" onclick="$('#topicInput').val('Ocean')">🌊 Ocean</span>
+          </div>
+          <button id="modalGenerate" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-colors mt-2">
+            Create Magic Page ✨
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/ai.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

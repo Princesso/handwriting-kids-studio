@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LittleScribe - Magic Handwriting Adventure</title>
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="styles/main.css">
+  <style type="text/tailwindcss" data-teda="tailwind-apply">
+    @layer components {
+      .btn-primary { @apply bg-blue-600 text-white px-8 py-4 rounded-full text-xl font-bold shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all transform hover:-translate-y-1 focus:ring-4 focus:ring-blue-300; }
+      .btn-outline { @apply bg-white text-slate-700 border-2 border-slate-200 px-6 py-3 rounded-full text-lg font-bold hover:border-blue-400 hover:text-blue-600 transition-all; }
+    }
+  </style>
+</head>
+<body class="text-slate-800">
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <img src="logo.svg" class="w-10 h-10" alt="Logo">
+        <span class="text-2xl font-bold tracking-tight text-slate-800">Little<span class="text-blue-500">Scribe</span></span>
+      </a>
+      <div class="hidden md:flex gap-8 items-center">
+        <a href="#features" class="text-slate-600 font-semibold hover:text-blue-600 transition-colors">Features</a>
+        <a href="#how-it-works" class="text-slate-600 font-semibold hover:text-blue-600 transition-colors">How It Works</a>
+        <a href="app.html" class="bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold shadow-md hover:bg-yellow-300 transition-colors">Launch App</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <!-- Background decorative blobs -->
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-yellow-100 rounded-full blur-3xl opacity-50"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-16">
+        <div class="lg:w-3/5 text-center lg:text-left">
+          <h1 class="text-6xl lg:text-8xl font-black leading-tight tracking-tight mb-8 text-slate-900">
+            Turn <span class="text-gradient-hero">Scribbles</span> <br> into Stories.
+          </h1>
+          <p class="text-xl lg:text-2xl text-slate-600 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            The magical AI notebook that teaches your child to write with confidence. Infinite fun prompts, instant encouragement, and zero waste.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="app.html" class="btn-primary flex items-center justify-center gap-2">
+              Start Writing Now 
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+            </a>
+            <a href="#features" class="btn-outline">Learn More</a>
+          </div>
+          <p class="mt-6 text-sm text-slate-400 font-medium uppercase tracking-wide">No Login Required • 100% Free • Safe for Kids</p>
+        </div>
+        
+        <div class="lg:w-2/5 relative">
+          <div class="relative z-10 bg-white p-4 rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500 border border-slate-100 float-anim">
+            <div class="bg-slate-50 rounded-2xl overflow-hidden aspect-square flex items-center justify-center relative">
+              <!-- Mockup UI Element -->
+              <div class="absolute inset-0 bg-paper-pattern opacity-50"></div>
+              <div class="relative z-10 text-center">
+                <p class="text-6xl font-black text-slate-200 dashed-border p-4 border-2 border-dashed border-slate-300 rounded-xl mb-4">Cat</p>
+                <div class="text-4xl text-blue-500 font-handwriting transform -rotate-6">Cat</div>
+              </div>
+            </div>
+            <!-- Floating Decor -->
+            <div class="absolute -top-6 -right-6 bg-yellow-400 text-white w-16 h-16 rounded-full flex items-center justify-center font-bold text-2xl shadow-lg animate-bounce">A+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features Section (Organic Layout) -->
+  <section id="features" class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-20 text-center">
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">Not Just Another App</h2>
+        <p class="text-xl text-slate-500">Designed for creativity, powered by friendly AI.</p>
+      </div>
+
+      <!-- Feature 1 -->
+      <div class="flex flex-col md:flex-row items-center gap-12 mb-32">
+        <div class="w-full md:w-1/2">
+           <div class="blob-shape bg-blue-50 p-12 aspect-square flex items-center justify-center relative overflow-hidden">
+             <svg class="w-40 h-40 text-blue-500 drop-shadow-lg float-anim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+           </div>
+        </div>
+        <div class="w-full md:w-1/2 space-y-6">
+          <h3 class="text-3xl font-bold text-slate-800">Infinite Imagination</h3>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Never run out of things to write. Our built-in "Magic Pencil" AI generates fun words and sentences about topics your child loves—from <span class="font-bold text-blue-500">Dinosaurs</span> to <span class="font-bold text-pink-500">Donuts</span>.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-slate-700 font-medium">
+              <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">✓</div> Personalized prompts
+            </li>
+            <li class="flex items-center gap-3 text-slate-700 font-medium">
+              <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">✓</div> Context-aware difficulty
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Feature 2 (Reverse) -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+        <div class="w-full md:w-1/2">
+           <div class="blob-shape bg-yellow-50 p-12 aspect-square flex items-center justify-center relative overflow-hidden">
+             <svg class="w-40 h-40 text-yellow-500 drop-shadow-lg float-anim-delay" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+           </div>
+        </div>
+        <div class="w-full md:w-1/2 space-y-6">
+          <h3 class="text-3xl font-bold text-slate-800">Instant Encouragement</h3>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Kids learn best when they feel good. LittleScribe celebrates every attempt with confetti, positive sounds, and instant feedback. It's not about being perfect; it's about showing up.
+          </p>
+          <a href="app.html" class="text-blue-600 font-bold hover:underline decoration-2 underline-offset-4">Try the demo &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="py-24 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-slate-900 mb-16">Learning in 3 Steps</h2>
+      
+      <div class="grid md:grid-cols-3 gap-12">
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative group">
+          <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-xl group-hover:scale-110 transition-transform">1</div>
+          <h3 class="mt-6 text-xl font-bold text-slate-800 mb-2">Pick a Topic</h3>
+          <p class="text-slate-500">Select a theme or let the Magic AI surprise you.</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative group">
+          <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-xl group-hover:scale-110 transition-transform">2</div>
+          <h3 class="mt-6 text-xl font-bold text-slate-800 mb-2">Trace & Draw</h3>
+          <p class="text-slate-500">Follow the guides on our infinite digital paper.</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative group">
+          <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-xl group-hover:scale-110 transition-transform">3</div>
+          <h3 class="mt-6 text-xl font-bold text-slate-800 mb-2">Get Stars</h3>
+          <p class="text-slate-500">Earn rewards and watch your handwriting improve!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Footer -->
+  <footer class="bg-slate-900 text-white py-24 text-center overflow-hidden relative">
+    <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAgMjBoMjB2MjBIMjBWNjB6IiBmaWxsPSIjZmZmIi8+PC9nPjwvc3ZnPg==')] opacity-5"></div>
+    <div class="max-w-2xl mx-auto px-6 relative z-10">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">Ready to write?</h2>
+      <a href="app.html" class="inline-block bg-yellow-400 text-slate-900 text-xl font-bold px-10 py-5 rounded-full shadow-lg hover:bg-yellow-300 hover:scale-105 transition-all">Open Notebook</a>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    $('a[href^="#"]').on('click', function(e) {
+      e.preventDefault();
+      const target = $(this.getAttribute('href'));
+      if(target.length) {
+        $('html, body').animate({ scrollTop: target.offset().top }, 1000);
+      }
+    });
+  </script>
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
