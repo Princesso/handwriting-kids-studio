@@ -14,7 +14,7 @@
     }
   </style>
 </head>
-<body class="h-screen w-screen bg-slate-50 flex flex-col overflow-hidden select-none touch-none">
+<body class="h-screen w-screen bg-slate-50 flex flex-col overflow-hidden select-none">
 
   <!-- Top Bar -->
   <header class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-4 z-20 shrink-0 shadow-sm">
@@ -43,7 +43,7 @@
   </header>
 
   <!-- Main Canvas Area -->
-  <main class="flex-1 relative bg-slate-100 p-4 flex gap-4 overflow-hidden">
+  <main class="flex-1 relative bg-slate-100 p-3 sm:p-4 pb-28 sm:pb-4 flex gap-4 overflow-hidden mobile-main">
     
     <!-- Toolbar (Left) -->
     <aside class="hidden sm:flex flex-col gap-4 bg-white p-3 rounded-2xl shadow-sm z-10 w-20 items-center justify-center shrink-0">
@@ -74,7 +74,7 @@
     </div>
 
     <!-- Canvas Container -->
-    <div id="canvasContainer" class="flex-1 bg-white rounded-2xl shadow-md relative overflow-hidden bg-paper-pattern border border-slate-200 cursor-crosshair">
+    <div id="canvasContainer" class="flex-1 h-full min-h-[65vh] bg-white rounded-2xl shadow-md relative overflow-hidden bg-paper-pattern border border-slate-200 cursor-crosshair">
       <canvas id="drawCanvas" class="absolute inset-0 z-10 touch-none"></canvas>
       
       <!-- Done Button Floating -->

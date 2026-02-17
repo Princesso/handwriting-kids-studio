@@ -112,3 +112,24 @@ input[type=range]::-webkit-slider-runnable-track {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Mobile & Touch Optimizations */
+#canvasContainer,
+#drawCanvas {
+  touch-action: none;
+}
+
+@media (max-width: 640px) {
+  .mobile-main {
+    padding: 12px;
+    padding-bottom: 112px;
+    gap: 12px;
+  }
+  #canvasContainer {
+    min-height: calc(100vh - 8rem);
+  }
+  #btnSpeak,
+  #btnNew {
+    font-size: 0.95rem;
+  }
+}
